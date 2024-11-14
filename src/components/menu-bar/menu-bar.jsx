@@ -15,7 +15,6 @@ import CommunityButton from './community-button.jsx';
 import ShareButton from './share-button.jsx';
 import {ComingSoonTooltip} from '../coming-soon/coming-soon.jsx';
 import Divider from '../divider/divider.jsx';
-import SaveStatus from './save-status.jsx';
 import ProjectWatcher from '../../containers/project-watcher.jsx';
 import MenuBarMenu from './menu-bar-menu.jsx';
 import MenuLabel from './tw-menu-label.jsx';
@@ -84,9 +83,6 @@ import collectMetadata from '../../lib/collect-metadata';
 
 import styles from './menu-bar.css';
 
-import helpIcon from '../../lib/assets/icon--tutorials.svg';
-import mystuffIcon from './icon--mystuff.png';
-import profileIcon from './icon--profile.png';
 import remixIcon from './icon--remix.svg';
 import dropdownCaret from './dropdown-caret.svg';
 import aboutIcon from './icon--about.svg';
@@ -105,15 +101,7 @@ import sharedMessages from '../../lib/shared-messages';
 
 import SeeInsideButton from './tw-see-inside.jsx';
 import {notScratchDesktop} from '../../lib/isScratchDesktop.js';
-import {APP_NAME} from '../../lib/brand.js';
 
-const ariaMessages = defineMessages({
-    tutorials: {
-        id: 'gui.menuBar.tutorialsLibrary',
-        defaultMessage: 'Tutorials',
-        description: 'accessibility text for the tutorials button'
-    }
-});
 
 const twMessages = defineMessages({
     compileError: {
@@ -1002,27 +990,6 @@ class MenuBar extends React.Component {
                             />
                         ) : []))}
                     </div>
-                    {/* tw: add a feedback button */}
-                    <div className={styles.menuBarItem}>
-                        <a
-                            className={styles.feedbackLink}
-                            href="https://scratch.mit.edu/users/GarboMuffin/#comments"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            {/* todo: icon */}
-                            <Button className={styles.feedbackButton}>
-                                <FormattedMessage
-                                    defaultMessage="{APP_NAME} Feedback"
-                                    description="Button to give feedback in the menu bar"
-                                    id="tw.feedbackButton"
-                                    values={{
-                                        APP_NAME
-                                    }}
-                                />
-                            </Button>
-                        </a>
-                    </div>
                 </div>
 
                 <div className={styles.accountInfoGroup}>
@@ -1041,7 +1008,6 @@ MenuBar.propTypes = {
     enableSeeInside: PropTypes.bool,
     onClickSeeInside: PropTypes.func,
     aboutMenuOpen: PropTypes.bool,
-    accountMenuOpen: PropTypes.bool,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -1065,7 +1031,7 @@ MenuBar.propTypes = {
     onClickErrors: PropTypes.func,
     onRequestCloseErrors: PropTypes.func,
     confirmReadyToReplaceProject: PropTypes.func,
-    currentLocale: PropTypes.string.isRequired,
+
     editMenuOpen: PropTypes.bool,
     enableCommunity: PropTypes.bool,
     fileMenuOpen: PropTypes.bool,
@@ -1078,11 +1044,10 @@ MenuBar.propTypes = {
     isTotallyNormal: PropTypes.bool,
     isUpdating: PropTypes.bool,
     locale: PropTypes.string.isRequired,
-    loginMenuOpen: PropTypes.bool,
-    mode1920: PropTypes.bool,
-    mode1990: PropTypes.bool,
+
+
     mode2020: PropTypes.bool,
-    mode220022BC: PropTypes.bool,
+
     modeMenuOpen: PropTypes.bool,
     modeNow: PropTypes.bool,
     onClickAbout: PropTypes.oneOfType([
@@ -1094,14 +1059,14 @@ MenuBar.propTypes = {
             })
         )
     ]),
-    onClickAccount: PropTypes.func,
+
     onClickAddonSettings: PropTypes.func,
     onClickDesktopSettings: PropTypes.func,
     onClickPackager: PropTypes.func,
     onClickRestorePoints: PropTypes.func,
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
-    onClickLogin: PropTypes.func,
+
     onClickMode: PropTypes.func,
     onClickNew: PropTypes.func,
     onClickNewWindow: PropTypes.func,
@@ -1110,15 +1075,13 @@ MenuBar.propTypes = {
     onClickSaveAsCopy: PropTypes.func,
     onClickSettings: PropTypes.func,
     onClickSettingsModal: PropTypes.func,
-    onLogOut: PropTypes.func,
-    onOpenRegistration: PropTypes.func,
-    onOpenTipLibrary: PropTypes.func,
+
     onProjectTelemetryEvent: PropTypes.func,
     onRequestCloseAbout: PropTypes.func,
-    onRequestCloseAccount: PropTypes.func,
+
     onRequestCloseEdit: PropTypes.func,
     onRequestCloseFile: PropTypes.func,
-    onRequestCloseLogin: PropTypes.func,
+
     onRequestCloseMode: PropTypes.func,
     onRequestCloseSettings: PropTypes.func,
     onRequestOpenAbout: PropTypes.func,
@@ -1126,17 +1089,16 @@ MenuBar.propTypes = {
     onSetTimeTravelMode: PropTypes.func,
     onShare: PropTypes.func,
     onStartSelectingFileUpload: PropTypes.func,
-    onToggleLoginOpen: PropTypes.func,
+
     projectId: PropTypes.string,
     projectTitle: PropTypes.string,
-    renderLogin: PropTypes.func,
-    sessionExists: PropTypes.bool,
+
     settingsMenuOpen: PropTypes.bool,
     shouldSaveBeforeTransition: PropTypes.func,
     showSaveFilePicker: PropTypes.func,
     showComingSoon: PropTypes.bool,
     username: PropTypes.string,
-    userOwnsProject: PropTypes.bool,
+
     vm: PropTypes.instanceOf(VM).isRequired
 };
 

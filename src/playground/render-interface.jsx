@@ -32,7 +32,6 @@ import '../lib/tw-fix-history-api';
 import GUI from './render-gui.jsx';
 import MenuBar from '../components/menu-bar/menu-bar.jsx';
 import ProjectInput from '../components/tw-project-input/project-input.jsx';
-import FeaturedProjects from '../components/tw-featured-projects/featured-projects.jsx';
 import Description from '../components/tw-description/description.jsx';
 import BrowserModal from '../components/browser-modal/browser-modal.jsx';
 import CloudVariableBadge from '../containers/tw-cloud-variable-badge.jsx';
@@ -332,26 +331,9 @@ class Interface extends React.Component {
                                     />
                                 </div>
                             ) : null}
-                            <div className={styles.section}>
-                                <p>
-                                    <FormattedMessage
-                                        // eslint-disable-next-line max-len
-                                        defaultMessage="{APP_NAME} is a Scratch mod that compiles projects to JavaScript to make them run really fast. Try it out by inputting a project ID or URL above or choosing a featured project below."
-                                        description="Description of TurboWarp on the homepage"
-                                        id="tw.home.description"
-                                        values={{
-                                            APP_NAME
-                                        }}
-                                    />
-                                </p>
-                            </div>
-                            <div className={styles.section}>
-                                <FeaturedProjects studio="27205657" />
-                            </div>
                         </React.Fragment>
                     ) : null}
                 </div>
-                {isHomepage && <Footer />}
             </div>
         );
     }
